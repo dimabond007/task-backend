@@ -13,7 +13,7 @@ const { verifyToken } = require("./middleware/auth.middleware");
 
 async function main() {
   await connectDB();
-  console.log('start');
+
   app.use(express.static("public"))
   app.use(express.json());
   app.use(cors());
@@ -28,7 +28,7 @@ async function main() {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
   });
-  
+
   app.listen(PORT, function (err) {
       if (err) console.log(err);
       console.log("Server listening on PORT", PORT);
