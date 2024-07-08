@@ -12,6 +12,7 @@ const { verifyToken } = require("./middleware/auth.middleware");
 
 async function main() {
   await connectDB();
+  console.log('start');
   app.use(express.static("public"))
   app.use(express.json());
   app.use(cors({
