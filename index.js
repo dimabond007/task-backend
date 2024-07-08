@@ -12,7 +12,7 @@ const { verifyToken } = require("./middleware/auth.middleware");
 
 async function main() {
   await connectDB();
-
+  app.use(express.static("public"))
   app.use(express.json());
   app.use(cors({
       origin: ["http://localhost:5173", "http://localhost:5175"],
