@@ -5,11 +5,12 @@ const router = express.Router();
 
 router.get("/",verifyToken, getTasksByUser);
 router.post("/",verifyToken,createTask);
-router.put("/:id",verifyToken,changedTask);
 router.patch("/:id",verifyToken, updateTask);
 router.delete('/:id',verifyToken,deleteTask);
 router.put('/reorder', verifyToken, reorderTasks);
+router.put("/:id",verifyToken,changedTask);
 router.put("/:id/pin", verifyToken, pinTask);
+
 
 
 router.put("/:id/todo/:todoId",verifyToken, updateTodo);
