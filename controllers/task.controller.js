@@ -24,6 +24,37 @@ async function updateTodo(req,res){
         res.status(500).json({ message: 'Error updating todo', error });
     }
 }
+
+async function changedTask(req, res) {
+  const taskId = req.params.id;
+  console.log(taskId);
+  try {
+    const task = await Task.findByIdAndUpdate(taskId, req.body, { new: true });
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating task', error });
+  }
+}
+
+async function updateTask(req,res) {
+  const taskId = req.params.id;
+  console.log(taskId);
+  try {
+    const task = await Task.findByIdAndUpdate(taskId, req.body, { new: true });
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating task', error });
+  }
+}
+
 async function getTasksByUser(req, res) {
     try {
         const userId = req.userId; // Используем req.userId, который добавляется в middleware
@@ -103,4 +134,4 @@ async function reorderTasks(req, res) {
     }
   }
 
-module.exports = { getTasksByUser,updateTodo,createTask,reorderTasks,deleteTask,pinTask};
+module.exports = { getTasksByUser,updateTodo,createTask,reorderTasks,deleteTask,pinTask,updateTask,changedTask};
